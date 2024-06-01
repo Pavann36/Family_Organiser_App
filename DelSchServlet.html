@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Schedule</title>
+  
+  <style>
+  body {
+  font-family: sans-serif;
+  justify-content: center;
+}
+
+#section1 {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input, textarea {
+  width: 30%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+/* style.css */
+#container {
+    display: flex;
+    flex-direction: row;
+}
+
+#section2 {
+    flex: 1;
+    padding: 1rem;
+}
+  </style> </head>
+<body>
+  <h1>Search Your Schedule</h1>
+  <marquee  behavior=alternate> Tages are important and mandatory for management of the Schedules</marquee>
+  <section id="section1">
+  <form id="schedule-form" action="SearchServlet" method="post">
+      <div class="form-group">
+      <label for="Tages">Tages:</label>
+      <input type="search" id="tages" name="tages" autofocus required>
+    </div>
+    <button type="submit" name="search">Search Schedule</button>
+  </form>
+  </section>
+</body>
+</html>

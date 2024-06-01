@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sticky Notes - Notebook Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+        justify-content: center; 
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .sticky-note {
+        background-color: #f9f9f9;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    .sticky-note p {
+        margin: 0;
+    }
+
+    .sticky-note-date {
+        font-size: 12px;
+        color: #888;
+        margin-top: 5px;
+    }
+
+    .delete-button, .update-button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #888;
+    }
+
+    .update-button {
+        right: 30px;
+    }
+
+    .add-note-button {
+        background-color: #4CAF50;
+        color: white;
+        align-items:center;
+        float: center;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+</div>
+
+<button class="add-note-button" style="float:center;" onclick="addStickyNote()">Add Sticky Note</button>
+
+<script>
+    function addStickyNote() {
+        var container = document.querySelector('.container');
+        var newStickyNote = document.createElement('div');
+        newStickyNote.classList.add('sticky-note');
+        var noteContent = prompt('Enter your note:');
+        if (noteContent !== null && noteContent.trim() !== '') {
+            newStickyNote.innerHTML = '<p>' + noteContent + '</p>';
+            var currentDate = new Date();
+            var dateText = 'Added on: ' + currentDate.toLocaleDateString() + ' at ' + currentDate.toLocaleTimeString();
+            var dateElement = document.createElement('div');
+            dateElement.classList.add('sticky-note-date');
+            dateElement.textContent = dateText;
+            newStickyNote.appendChild(dateElement);
+
+            var deleteButton = document.createElement('span');
+            deleteButton.classList.add('delete-button');
+            deleteButton.textContent = '❌';
+            deleteButton.onclick = function() {
+                container.removeChild(newStickyNote);
+            };
+            newStickyNote.appendChild(deleteButton);
+
+            var updateButton = document.createElement('span');
+            updateButton.classList.add('update-button');
+            updateButton.textContent = '✏️';
+            updateButton.onclick = function() {
+                var updatedContent = prompt('Update your note:', noteContent);
+                if (updatedContent !== null && updatedContent.trim() !== '') {
+                    newStickyNote.querySelector('p').textContent = updatedContent;
+                }
+            };
+            newStickyNote.appendChild(updateButton);
+
+            container.insertBefore(newStickyNote, container.lastElementChild);
+        } else {
+            alert('Note content cannot be empty. Please try again.');
+        }
+    }
+</script>
+
+</body>
+</html>
